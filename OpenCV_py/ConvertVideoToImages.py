@@ -1,7 +1,8 @@
-from cv2 import cv2 as cv
+import cv2 as cv
 import os
 
-directoryname = os.getcwd() + '/datas/images/imageframes'
+
+directoryname = os.getcwd() + '/datas/images/imageframes' #os.getcwd() 파일이 열린 위치 기준
 def hasdir():
     hasdir = False
     if not os.path.exists(directoryname):

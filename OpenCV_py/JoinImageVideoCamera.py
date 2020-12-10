@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 
 
+
 def stackImages(scale, imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])
@@ -40,25 +41,24 @@ def stackImages(scale, imgArray):
         ver = hor
     return ver
 
+cap = cv.VideoCapture(0)
+cap1= cv.VideoCapture("datas/videos/[Ohys-Raws] Dungeon ni Deai o Motomeru no wa Machigatte Iru Darouka Familia Myth III - 10 (BS11 1280x720 x264 AAC).mp4")
 
+try:
+    while cap.isOpened() & cap1.isOpened():
+       
+        ret, frame = cap.read()
+        success, video = cap1.read()
+        img = cv.imread('datas/images/kub.jpg')
+        imgStack = stackImages(0.7, ([frame, img, video],[img, video, frame],[video,frame,img]))
+        cv.imshow("ImageStack", imgStack)       
+        if cv.waitKey(1) == 27:
+            break
+except :
+    pass
+finally:
+        # When everything done, release the capture
+    cap.release()
+    cv.destroyAllWindows()
 
-
-img = cv.imread('datas/images/kub.jpg')
-imgGray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-imgYuv = cv.cvtColor(img, cv.COLOR_BGR2YUV)
-imgHsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-imgXyz = cv.cvtColor(img, cv.COLOR_BGR2XYZ)
-imgHls = cv.cvtColor(img, cv.COLOR_BGR2HLS)
-print(img.shape)
-imgResize = cv.resize(img,(135,203))
-imgHor = np.hstack((img,img,img))
-cv.imshow("Horizontal",imgHor)
-
-imgVer = np.vstack((imgResize,imgResize,imgResize,imgResize,imgResize))
-cv.imshow("Vertical",imgVer)
-
-imgStack = stackImages(0.5, ([imgYuv, imgGray, imgHsv], [img, imgXyz, imgHls]))
-cv.imshow("ImageStack", imgStack)
-
-cv.waitKey(0)
-cv.destroyAllWindows()
+print('End....')

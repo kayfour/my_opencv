@@ -1,20 +1,21 @@
-from cv2 import cv2 as cv
+import cv2 as cv
 import numpy as np
 
-# img = cv.imread("datas/images/shapes.png")
-img = cv.imread("datas/images/lambo.png")
+img = cv.imread("datas/images/marvel1.png")
 print(img.shape)
-# (462, 623, 3)
 
-imgResize = cv.resize(img,(1000,500))
+imgResize = cv.resize(img,(2384,1340))
 print(imgResize.shape)
-# (500, 1000, 3)
-cv.imshow("Image Resize",imgResize)
+#cv.imshow("Image Resize",imgResize)
 
-imgCropped = img[46:219,152:495] # image numpy matrix
+imgCropped = img[75:155, 500:580] #세로시작점: 세로끝점, 가로시작점:가로끝점
 
 cv.imshow("Image",img)
-cv.imshow("Image Cropped",imgCropped)
+cv.imshow("Hulk",imgCropped)
+
+imgCropped = img[210:280, 560:610]
+cv.imshow("Ironman",imgCropped)
+
 
 cv.waitKey(0)
 cv.destroyAllWindows()

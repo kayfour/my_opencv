@@ -1,6 +1,6 @@
-from cv2 import cv2 as cv
+import cv2 as cv
 
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 
 try:
     # Read until video is completed
